@@ -17,6 +17,6 @@ let customerSchema = new mongoose.Schema({
     nohp : String
 })
 
-let edu = mongoose.model('customer',customerSchema,'customer')
+let customer = mongoose.model('customer',customerSchema,'customer')
 console.log("customer Terbuat")
 module.exports = mongoose.model('customer')
