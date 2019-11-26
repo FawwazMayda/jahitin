@@ -22,13 +22,13 @@ let tailorSchema = new mongoose.Schema({
 
 let tailor = mongoose.model('tailor',tailorSchema,'tailor')
 console.log("tailor Terbuat")
-tailor.create({
-    _id:3,
-    username:"ABANG HOLA",
-    pwd:"BBBB",
-    namatoko : "Toko Bola",
-    alamat : "Jl.Kaliurang",
-    nohp : "0852",
-    KTP : "637"
-})
+// tailor.create({
+//     _id:3,
+//     username:"ABANG HOLA",
+//     pwd:"BBBB",
+//     namatoko : "Toko Bola",
+//     alamat : "Jl.Kaliurang",
+//     nohp : "0852",
+//     KTP : "637"
+// })
 module.exports = mongoose.model('tailor')

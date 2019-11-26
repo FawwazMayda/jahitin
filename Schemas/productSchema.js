@@ -22,14 +22,14 @@ let productSchema = new mongoose.Schema({
 
 let product = mongoose.model('product',productSchema,'product')
 console.log("product terbuat")
-product.create({
-    _id:4,
-    tailor_id : 3,
-    jenis:"Sablon",
-    kain : "Satin",
-    ukuran : "M",
-    warna : "Biru",
-    hargaSatuan : 15000
-})
+// product.create({
+//     _id:4,
+//     tailor_id : 3,
+//     jenis:"Sablon",
+//     kain : "Satin",
+//     ukuran : "M",
+//     warna : "Biru",
+//     hargaSatuan : 15000
+// })
 module.exports = product
 
