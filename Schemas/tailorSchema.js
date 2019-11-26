@@ -23,7 +23,7 @@ let tailorSchema = new mongoose.Schema({
 let tailor = mongoose.model('tailor',tailorSchema,'tailor')
 console.log("tailor Terbuat")
 tailor.create({
-    _id:2,
+    _id:3,
     username:"ABANG HOLA",
     pwd:"BBBB",
     namatoko : "Toko Bola",

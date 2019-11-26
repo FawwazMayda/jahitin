@@ -19,4 +19,10 @@ let customerSchema = new mongoose.Schema({
 
 let customer = mongoose.model('customer',customerSchema,'customer')
 console.log("customer Terbuat")
+customer.create({
+  _id:2,
+  username:"ABANG BLOL",
+  pwd:"ABABBA",
+  nohp:"0852"
+})
 module.exports = mongoose.model('customer')
