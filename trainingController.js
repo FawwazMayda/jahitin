@@ -48,4 +48,11 @@ router.post('/training/registerTailor/:training_id/:tailor_id',(req,res)=>{
          })
 })
 
+router.get('/training',(req,res)=>{
+    training.find({},(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        res.status(200).send({msg:"OK",data:d})
+    })
+})
+
 module.exports = router
