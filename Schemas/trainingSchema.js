@@ -33,6 +33,6 @@ console.log("training terbuat")
 //     jenisTraining : "Jahit Kilaat",
 //     pesertaCustomer : [2,4,45,46,45,7,6],
 //     pesertaTailor : [74,5,4,34,43]
-})
+// })
 
 module.exports = training
