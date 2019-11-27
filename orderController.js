@@ -4,8 +4,6 @@ const bodyParser = require('body-parser')
 const order = require('./Schemas/orderSchema')
 const autoInc = require('./Schemas/nextSequence')
 router.use(bodyParser.json())
-let count = order.find({}).Count()+1
-console.log(count)
 router.post("/order",(req,res)=> {
     // REquest On Body
     // POST order from Customer
@@ -16,7 +14,7 @@ router.post("/order",(req,res)=> {
     let productId = req.body.productId
     
      order.create({
-     _id : order.find().count()+1,
+     _id : 2,
      customer_id:customerId,
      tailor_id:tailorId,
      product_id:productId,
