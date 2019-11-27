@@ -11,23 +11,20 @@ router.post('/tailor/signup',(req,res)=>{
     let username = req.body.username
     let pwd = req.body.pwd
     let namatoko = req.body.namatoko
+    let jenisKelamin = req.body.jenisKelamin
     let alamat = req.body.alamat
     let nohp = req.body.nohp
     let ktp  = req.body.KTP
-
-
+    let jenisToko = req.body.jenisToko
+    let kodePos = req.body.kodePos
     tailor.create({
-             _id:id,
-             username:username,
-             pwd:pwd,
-             namatoko : namatoko,
-             alamat : alamat,
-             nohp : nohp,
-             KTP : ktp
-         },(err,d)=>{
-             if(err) res.status(500).send("Internal Server Error")
-             res.status(200).send(`Tailor created with id ${id}`)
-         })
+        _id:id, username:username, pwd:pwd,namatoko:namatoko,
+        jenisKelamin:jenisKelamin,alamat:alamat,kodePos:kodePos,
+        jenisToko:jenisToko,nohp:nohp,KTP:ktp
+    },(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        res.status(200).send(`Created tailor with id ${id}`)
+    })
 })
 
 router.post('/tailor/login',(req,res)=> {

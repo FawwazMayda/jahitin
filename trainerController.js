@@ -9,35 +9,30 @@ let autoInc = new Increment()
 
 router.post('/trainer/signup',(req,res)=>{
     let id = autoInc.getNextId("trainer")
-    let username = req.body.username
-    let pwd = req.body.pwd
-    let namalembaga = req.body.namalembaga
-    let alamat = req.body.alamat
+    let pemilikLembaga = req.body.pemilikLembaga
     let nohp = req.body.nohp
-    let ktp  = req.body.KTP
-
-
+    let jenisKelamin = req.body.jenisKelamin
+    let namaLembaga = req.body.namaLembaga
+    let alamat = req.body.alamat
+    let kodePos = req.body.kodePos
+    let jenisPelatihan = req.body.jenisPelatihan    
     trainer.create({
-             _id:id,
-             username:username,
-             pwd:pwd,
-             namaLembaga : namalembaga,
-             alamat : alamat,
-             nohp : nohp,
-             KTP : ktp
-         },(err,d)=>{
-             if(err) res.status(500).send("Internal Server Error")
-             res.status(200).send(`Trainer created with id ${id}`)
-         })
+        _id:id,pemilikLembaga:pemilikLembaga,nohp:nohp,
+        jenisKelamin:jenisKelamin,namaLembaga:namaLembaga,
+        alamat:alamat,kodePos:kodePos,jenisPelatihan:jenisPelatihan
+    },(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        res.status(200).send(`Trainer created with id ${id}`)
+    })
 })
 
 
 router.post('/trainer/login',(req,res)=>{
-    let username = req.body.username
+    let namaLembaga = req.body.namaLembaga
     let pwd = req.body.pwd
 
     trainer.findOne({
-             username:username,
+             namaLembaga:namaLembaga,
              pwd:pwd,
         },(err,d)=>{
              if(err) res.status(200).send("FAILED")

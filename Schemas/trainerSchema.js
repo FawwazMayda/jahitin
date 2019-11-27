@@ -11,12 +11,14 @@ db.once('open', function() {
 
 let trainerSchema = new mongoose.Schema({
     _id : Number,
-    username : String,
-    pwd : String,
+    pemilikLembaga : String,
+    nohp : String,
+    jenisKelamin : String,
     namaLembaga : String,
     alamat : String,
-    nohp : String,
-    KTP : String
+    kodePos : Number,
+    jenisPelatihan : String,
+    peserta : [Object]
 })
 
 let trainer = mongoose.model('trainer',trainerSchema,'trainer')

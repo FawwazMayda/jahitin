@@ -3,6 +3,7 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 const training = require('./Schemas/trainingSchema')
+const trainer = require('./Schemas/trainerSchema')
 
 router.post('/training/registerCustomer/:training_id/:customer_id',(req,res)=>{
     let training_id =  parseInt(req.params.training_id)
@@ -55,6 +56,27 @@ router.get('/training',(req,res)=>{
         if(err) res.status(500).send("Internal Server Error")
         res.status(200).send({msg:"OK",data:d})
     })
+})
+
+router.post("/joinTraining",(req,res)=>{
+    let nama = req.body.nama
+    let nohp = req.body.nohp
+    let jenisKelamin = req.body.jenisKelamin
+    let trainerId = req.body.trainerId
+
+    trainer.findOne({_id:trainerId},(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        if(d==null) res.status(404).send("Not Found")
+        let data = {nama:nama, nohp:nohp, jenisKelamin:jenisKelamin}
+        var nData = (d.peserta) 
+        console.log(nData)
+        nData.push(data)
+        d.peserta = nData
+        d.save()
+        res.status(200).send(`Terdaftar pada lembaga ${trainerId}`)
+    })
+
+
 })
 
 module.exports = router
