@@ -14,6 +14,6 @@ app.use('/api/productController',productController)
 app.use('/api/customerController',customerController)
 app.use('/api/tailorController',tailorController)
 app.use('/api/trainingController',trainingController)
-app.use('/api/trainerController',trainrController)
+app.use('/api/trainerController',trainerController)
 
 module.exports = app
