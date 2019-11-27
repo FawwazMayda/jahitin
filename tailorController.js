@@ -30,4 +30,13 @@ router.post('/tailor/signup',(req,res)=>{
          })
 })
 
+router.post('/tailor/login',(req,res)=> {
+    let username = req.body.username
+    let pwd = req.body.pwd
+    tailor.find({username:username,pwd:pwd},(err,d)=>{
+        if(err) res.status(200).send("FAILED")
+        res.status(200).send("OK")
+    })
+})
+
 module.exports = router

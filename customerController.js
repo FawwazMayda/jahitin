@@ -16,4 +16,13 @@ router.post('/customer/signup',(req,res)=>{
     })
 })
 
+router.post('/customer/login',(req,res)=> {
+    let username = req.body.username
+    let pwd = req.body.pwd
+    customer.find({username:username,pwd:pwd},(err,d)=>{
+        if(err) res.status(200).send("FAILED")
+        res.status(200).send("OK")
+    })
+})
+
 module.exports = router
