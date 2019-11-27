@@ -1,9 +1,7 @@
 const express = require('express')
-const router = express.Router()
-const bodyParser = require('body-parser')
+const app =express()
+const cors = require('cors')
 
-router.get('/',(req,res)=> {
+app.use(cors())
 
-})
-
-module.exports = router
+module.exports = app
