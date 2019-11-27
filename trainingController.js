@@ -79,4 +79,13 @@ router.post("/joinTraining",(req,res)=>{
 
 })
 
+router.get("/daftarPeserta/:trainer_id",(req,res)=> {
+    let trainer_id = req.params.trainer_id
+    trainer.findOne({_id:trainer_id},(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        if(d==null) res.status(200).send("Tidak ada peserta")
+        res.status(200).send({peserta:d.peserta})
+    })
+})
+
 module.exports = router
