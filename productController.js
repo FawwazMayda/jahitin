@@ -27,6 +27,7 @@ router.post('/product',(req,res)=>{
     let tailorId = parseInt(req.body.tailor_id)
     let jenis = req.body.jenis
     let kain = req.body.kain
+    let sablon = req.body.sablon
     let ukuran = req.body.ukuran
     let harga = req.body.hargaSatuan
     let warna = req.body.warna
@@ -37,11 +38,35 @@ router.post('/product',(req,res)=>{
              kain : kain,
              ukuran : ukuran,
              warna : warna,
+             sablon : sablon,
              hargaSatuan : harga
          },(err)=>{
              if(err) res.status(500).send("Internal Server Error")
              res.status(200).send(`Product Inserted with id ${id}`)
          })
+})
+
+router.post('/product/edit/:product_id',(req,res)=>{
+    let productId = req.params.product_id
+    let jenis = req.body.jenis
+    let kain = req.body.kain
+    let ukuran = req.body.ukuran
+    let harga = req.body.hargaSatuan
+    let warna = req.body.warna
+    let sablon = req.body.sablon
+    product.findOne({_id:productId},(err,d)=>{
+        if(err) res.status(500).send("Internal Server Error")
+        if(d==null) res.status(404).send("Not Found")
+        d.jenis = jenis
+        d.kain = kain
+        d.sablon = sablon
+        d.ukuran = ukuran
+        d.warna = warna
+        d.hargaSatuan = harga
+        d.save()
+        res.status(200).send(`Product id ${productId} is updated`)
+    })
+
 })
 
 
