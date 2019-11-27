@@ -15,7 +15,10 @@ let tailorSchema = new mongoose.Schema({
     username : String,
     pwd : String,
     namatoko : String,
+    jenisKelamin : String,
     alamat : String,
+    kodePos : String,
+    jenisToko : String
     nohp : String,
     KTP : String
 })
