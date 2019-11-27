@@ -39,8 +39,6 @@ router.post("/order/:order_id",(req,res)=> {
     let orderId = parseInt(req.params.order_id)
     let tanggalMulai = req.body.tanggalMulai
     let tanggalSelesai = req.body.tanggalSelesai
-    const filter = {_id : orderId}
-    const update = {tanggalMulai : tanggalMulai, tanggalSelesai : tanggalSelesai,status:"Diterima Penjahit"}
     order.findOne({_id:orderId},(err,doc)=>{
         if(err) res.status(500).send("Internal Server Error")
         doc.tanggalMulai = tanggalMulai

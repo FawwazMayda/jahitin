@@ -1,13 +1,32 @@
 tailorController:
 -POST tailor/signup
+--> id : Number,
+    username : String,
+    pwd : String,
+    namatoko : String,
+    alamat : String,
+    nohp : String,
+    KTP : String
 
 
 customerController:
 -POST customer/signup
+--> id : Number,
+    username : String,
+    pwd : String,
+    nohp : String
 
 orderContoller:
 -POST order 
+--> id : Number,
+    tailorId : Number,
+    customerId : Number,
+    productId : Number,
+
 -POST order/:order_id
+--> orderId : Number,
+    tanggalMulai : String/Date,
+    tanggalSelesa : String/Date
 
 productController:
 -GET product 
