@@ -1,0 +1,15 @@
+tailorController:
+-POST tailor/signup
+
+
+customerController:
+-POST customer/signup
+
+orderContoller:
+-POST order 
+-POST order/:order_id
+
+productController:
+-GET product 
+-GET product/:tailor_id
+-POST product
