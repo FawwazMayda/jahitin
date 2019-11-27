@@ -27,3 +27,5 @@ router.post('/tailor/signup',(req,res)=>{
              res.status(200).send("Tailor created")
          })
 })
+
+module.exports = router
