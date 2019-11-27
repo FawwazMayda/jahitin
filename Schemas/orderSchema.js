@@ -16,7 +16,7 @@ let orderSchema = new mongoose.Schema({
     tailor_id : Number,
     product_id : Number,
     tanggalMulai : Date,
-    tanngalSelesai : Date,
+    tanggalSelesai : Date,
     biaya : Number,
     status : String
 })
