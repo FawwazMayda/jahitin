@@ -12,16 +12,17 @@ router.post('/training/registerCustomer/:training_id/:customer_id',(req,res)=>{
              _id:training_id
          },(err,d)=>{
              if(err) res.status(500).send("Internal Server Error")
-             if(kuota < 1){
+             if(d.kuota < 1){
                 res.status(200).send("Kuota penuh")
-             }else if(d.tanggalMulai.getTime()>Date().getTime()){
+             }else if(Date(d.tanggalMulai) > Date.now()){
                 res.status(200).send("Pendaftaran telah ditutup")
              }else{
                 var nData = d.pesertaCustomer;
                 nData.push(customer_id);
                 d.pesertaCustomer = nData;
+                d.kuota = d.kuota - 1
                 d.save()
-                res.status(200).send("Terdaftar")
+                res.status(200).send(`Customer ${customer_id} terdaftar pada training ${training_id}`)
              }
          })
 })
@@ -34,16 +35,17 @@ router.post('/training/registerTailor/:training_id/:tailor_id',(req,res)=>{
              _id:training_id
          },(err,d)=>{
              if(err) res.status(500).send("Internal Server Error")
-             if(kuota < 1){
+             if(d.kuota < 1){
                 res.status(200).send("Kuota penuh")
-             }else if(d.tanggalMulai.getTime()>Date().getTime()){
+             }else if(Date(d.tanggalMulai) > Date.now()){
                 res.status(200).send("Pendaftaran telah ditutup")
              }else{
                 var nData = d.pesertaTailor;
                 nData.push(tailor_id);
                 d.pesertaTailor = nData;
+                d.kuota = d.kuota-1
                 d.save()
-                res.status(200).send("Terdaftar")
+                res.status(200).send(`Tailor ${tailor_id} terdaftar pada training ${training_id}`)
              }
          })
 })

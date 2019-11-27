@@ -3,6 +3,7 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 const trainer = require('./Schemas/trainerSchema')
+const training = require('./Schemas/trainingSchema')
 const Increment = require('./Schemas/autoIncrement')
 let autoInc = new Increment()
 
@@ -45,7 +46,20 @@ router.post('/trainer/login',(req,res)=>{
 })
 
 router.post('/trainer/createTraining',(req,res)=>{
-   
+   console.log(req.body)
+   let id = autoInc.getNextId("training")
+   let trainerId = req.body.trainerId
+   let tanggalMulai = req.body.tanggalMulai
+   let tanggalSelesai = req.body.tanggalSelesai
+   let alamat = req.body.alamat
+   let kuota = req.body.kuota
+   let jenisTraining = req.body.jenisTraining
+   training.create({_id : id, trainer_id : trainerId,
+    tanggalMulai : tanggalMulai, tanggalSelesai: tanggalSelesai, kuota: kuota,alamat:alamat,jenisTraining:jenisTraining },(err,d)=>{
+       if(err) res.status(500).send("Internal Server Error")
+       res.status(200).send(`training created with id ${id} by trainer ${trainerId}`)
+   })
+
 })
 
 module.exports = router
