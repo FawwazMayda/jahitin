@@ -3,6 +3,8 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 const product = require('./Schemas/productSchema')
+const Increment = require('./Schemas/autoIncrement')
+let autoInc = new Increment()
 router.get('/product',(req,res)=>{
     product.find({},(err,d)=>{
         if(err) res.status(500).send("Internal Server Error")
@@ -21,7 +23,7 @@ router.get('/product/:tailor_id',(req,res)=>{
 router.post('/product',(req,res)=>{
     console.log("/product POST")
     console.log(req.body)
-    let id = parseInt(req.body.id)
+    let id = autoInc.getNextId("product")
     let tailorId = parseInt(req.body.tailor_id)
     let jenis = req.body.jenis
     let kain = req.body.kain
@@ -38,7 +40,7 @@ router.post('/product',(req,res)=>{
              hargaSatuan : harga
          },(err)=>{
              if(err) res.status(500).send("Internal Server Error")
-             res.status(200).send("Product Inserted")
+             res.status(200).send(`Product Inserted with id ${id}`)
          })
 })
 
