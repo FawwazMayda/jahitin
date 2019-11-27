@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
-router.use(bodyParser)
+router.use(bodyParser.json())
 const trainer = require('./Schemas/trainerSchema')
+const Increment = require('./Schemas/autoIncrement')
+let autoInc = new Increment()
 
 router.post('/trainer/signup',(req,res)=>{
-    let id = req.body.id
+    let id = autoInc.getNextId("trainer")
     let username = req.body.username
     let pwd = req.body.pwd
     let namalembaga = req.body.namalembaga
@@ -24,7 +26,7 @@ router.post('/trainer/signup',(req,res)=>{
              KTP : ktp
          },(err,d)=>{
              if(err) res.status(500).send("Internal Server Error")
-             res.status(200).send("Trainer created")
+             res.status(200).send(`Trainer created with id ${id}`)
          })
 })
 

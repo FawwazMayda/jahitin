@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const order = require('./Schemas/orderSchema')
-const autoInc = require('./Schemas/nextSequence')
+const Increment = require('./Schemas/autoIncrement')
+let autoInc = new Increment()
 router.use(bodyParser.json())
 
 
@@ -11,7 +12,7 @@ router.post("/order",(req,res)=> {
     // POST order from Customer
     console.log("MASUK /order")
     console.log(req.body)
-    let id = req.body.id
+    let id = autoInc.getNextId("order")
     let tailorId = req.body.tailorId
     let customerId = req.body.customerId
     let productId = req.body.productId
@@ -27,7 +28,7 @@ router.post("/order",(req,res)=> {
      status : "Pesanan Masuk"
     },(err)=>{
         if(err) res.status(500).send("Internal Server Error")
-        res.status(200).send("Order Inserted from Customer")
+        res.status(200).send(`Order Inserted from Customer with id ${id}`)
     })
 })
 
@@ -46,7 +47,7 @@ router.post("/order/:order_id",(req,res)=> {
         doc.status = "Diterima Penjahit"
         doc.save()
 
-        res.status(200).send("Order Inserted from Tailor")
+        res.status(200).send(`Order id ${orderId} Inserted from Tailor`)
     })
 })
 

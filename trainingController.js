@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
-router.use(bodyParser)
+router.use(bodyParser.json())
 const training = require('./Schemas/trainingSchema')
 
 router.post('/training/registerCustomer/:training_id/:customer_id',(req,res)=>{
