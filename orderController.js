@@ -4,17 +4,20 @@ const bodyParser = require('body-parser')
 const order = require('./Schemas/orderSchema')
 const autoInc = require('./Schemas/nextSequence')
 router.use(bodyParser.json())
+
+
 router.post("/order",(req,res)=> {
     // REquest On Body
     // POST order from Customer
     console.log("MASUK /order")
     console.log(req.body)
+    let id = req.body.id
     let tailorId = req.body.tailorId
     let customerId = req.body.customerId
     let productId = req.body.productId
     
      order.create({
-     _id : 2,
+     _id : id,
      customer_id:customerId,
      tailor_id:tailorId,
      product_id:productId,
