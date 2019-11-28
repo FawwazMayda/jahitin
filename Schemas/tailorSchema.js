@@ -20,7 +20,6 @@ let tailorSchema = new mongoose.Schema({
     kodePos : Number,
     jenisToko : String,
     nohp : String,
-    KTP : String
 })
 
 let tailor = mongoose.model('tailor',tailorSchema,'tailor')
