@@ -7,6 +7,7 @@ const Increment = require('./Schemas/autoIncrement')
 let autoInc = new Increment()
 
 router.post('/tailor/signup',(req,res)=>{
+    console.log("MASUK")
     let id = autoInc.getNextId("tailor")
     let username = req.body.username
     let pwd = req.body.pwd
